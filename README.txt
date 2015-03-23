@@ -4,7 +4,7 @@ Created by: Eric Bréchemier
 Last Updated: 2006-02-14
 License: LGPL
 
-build.xml - Apache ANT build file, to run transform 15 times on input data
+build.xml - Apache ANT build file, to run transform multiple times in a loop
 data      - input data
 out       - output data
 doc       - this file and license information
