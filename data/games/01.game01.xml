@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sudoku xmlns="http://eric.brechemier.name/game/sudoku">
+  <!--
+    | A B C | D E F | G H I |
+  -
+  1
+  2   (1)      (2)     (3)
+  3
+  -
+  4
+  5   (4)      (5)     (6)
+  6
+  -
+  7
+  8   (7)      (8)     (9)
+  9
+  -->
+  <symbols>
+    <symbol>1</symbol>
+    <symbol>2</symbol>
+    <symbol>3</symbol>
+    <symbol>4</symbol>
+    <symbol>5</symbol>
+    <symbol>6</symbol>
+    <symbol>7</symbol>
+    <symbol>8</symbol>
+    <symbol>9</symbol>
+  </symbols>
+  
+  <!-- region 1: ABC x 123 -->
+  <square region="1" col="A" row="1" />
+  <square region="1" col="B" row="1" value="7" />
+  <square region="1" col="C" row="1" />
+  
+  <square region="1"  col="A" row="2" />
+  <square region="1"  col="B" row="2" value="3" />
+  <square region="1"  col="C" row="2" />
+  
+  <square region="1"  col="A" row="3" />
+  <square region="1"  col="B" row="3" />
+  <square region="1"  col="C" row="3" />
+  
+  <!-- region 2: DEF x 123 -->
+  <square region="2"  col="D" row="1" />
+  <square region="2"  col="E" row="1" value="4" />
+  <square region="2"  col="F" row="1" />
+  
+  <square region="2"  col="D" row="2" />
+  <square region="2"  col="E" row="2" value="9" />
+  <square region="2"  col="F" row="2" />
+  
+  <square region="2"  col="D" row="3" />
+  <square region="2"  col="E" row="3" value="1" />
+  <square region="2"  col="F" row="3" />
+  
+  <!-- region 3: GHI x 123 -->
+  <square region="3"  col="G" row="1" />
+  <square region="3"  col="H" row="1" value="9" />
+  <square region="3"  col="I" row="1" value="8" />
+  
+  <square region="3"  col="G" row="2" />
+  <square region="3"  col="H" row="2" />
+  <square region="3"  col="I" row="2" value="5" />
+  
+  <square region="3"  col="G" row="3" />
+  <square region="3"  col="H" row="3" />
+  <square region="3"  col="I" row="3" value="3" />
+  
+  <!-- region 4: ABC x 456 -->
+  <square region="4"  col="A" row="4" value="3" />
+  <square region="4"  col="B" row="4" value="1" />
+  <square region="4"  col="C" row="4" />
+  
+  <square region="4"  col="A" row="5" />
+  <square region="4"  col="B" row="5" />
+  <square region="4"  col="C" row="5" />
+  
+  <square region="4"  col="A" row="6" />
+  <square region="4"  col="B" row="6" value="4" />
+  <square region="4"  col="C" row="6" value="8" />
+  
+  <!-- region 5: DEF x 456 -->
+  <square region="5"  col="D" row="4" value="5" />
+  <square region="5"  col="E" row="4" />
+  <square region="5"  col="F" row="4" />
+  
+  <square region="5"  col="D" row="5" value="1" />
+  <square region="5"  col="E" row="5" />
+  <square region="5"  col="F" row="5" />
+  
+  <square region="5"  col="D" row="6" value="3" />
+  <square region="5"  col="E" row="6" value="6" />
+  <square region="5"  col="F" row="6" value="9" />
+  
+  <!-- region 6: GHI x 456 -->
+  <square region="6"  col="G" row="4" value="9" />
+  <square region="6"  col="H" row="4" />
+  <square region="6"  col="I" row="4" />
+  
+  <square region="6"  col="G" row="5" />
+  <square region="6"  col="H" row="5" />
+  <square region="6"  col="I" row="5" />
+  
+  <square region="6"  col="G" row="6" value="2" />
+  <square region="6"  col="H" row="6" />
+  <square region="6"  col="I" row="6" value="1" />
+  
+  <!-- region 7: ABC x 789 -->
+  <square region="7"  col="A" row="7" value="9" />
+  <square region="7"  col="B" row="7" value="5" />
+  <square region="7"  col="C" row="7" value="7" />
+  
+  <square region="7"  col="A" row="8" />
+  <square region="7"  col="B" row="8" />
+  <square region="7"  col="C" row="8" />
+  
+  <square region="7"  col="A" row="9" value="1" />
+  <square region="7"  col="B" row="9" value="2" />
+  <square region="7"  col="C" row="9" value="3" />
+  
+  <!-- region 8: DEF x 789 -->
+  <square region="8"  col="D" row="7" value="4" />
+  <square region="8"  col="E" row="7" value="3" />
+  <square region="8"  col="F" row="7" value="2" />
+  
+  <square region="8"  col="D" row="8" value="9" />
+  <square region="8"  col="E" row="8" value="5" />
+  <square region="8"  col="F" row="8" value="1" />
+  
+  <square region="8"  col="D" row="9" value="6" />
+  <square region="8"  col="E" row="9" value="8" />
+  <square region="8"  col="F" row="9" value="7" />
+  
+  <!-- region 9: GHI x 789 -->
+  <square region="9"  col="G" row="7" value="8" />
+  <square region="9"  col="H" row="7" value="1" />
+  <square region="9"  col="I" row="7" value="6" />
+  
+  <square region="9"  col="G" row="8" value="3" />
+  <square region="9"  col="H" row="8" value="7" />
+  <square region="9"  col="I" row="8" value="2" />
+  
+  <square region="9"  col="G" row="9" />
+  <square region="9"  col="H" row="9" />
+  <square region="9"  col="I" row="9" value="9" />
+  
+</sudoku>
