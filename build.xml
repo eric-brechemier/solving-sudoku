@@ -55,14 +55,4 @@
     
   </target>
   
-  <target name="runOther" depends="clean" description="Launch Backtrack XSLT solver on sudoko data file">
-    <mkdir dir="${out.file.dir}"/>
-    <java classpathref="run.classpath" classname="net.sf.saxon.Transform">
-      <arg line="-o ${out.file.dir}/result.html"/>
-      <!--arg line="${temp15.file.dir}"/-->
-      <arg line="-it main"/>
-      <arg line="src/xslt/other/andrew.j.welch.sudoku.xsl"/>
-    </java>
-  </target>
-  
 </project>
