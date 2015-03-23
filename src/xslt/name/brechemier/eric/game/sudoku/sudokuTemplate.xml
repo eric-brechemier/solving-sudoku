@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sudoku xmlns="http://eric.brechemier.name/game/sudoku">
+  <!--
+    | A B C | D E F | G H I |
+  -
+  1
+  2   (1)      (2)     (3)
+  3
+  -
+  4
+  5   (4)      (5)     (6)
+  6
+  -
+  7
+  8   (7)      (8)     (9)
+  9
+  -->
+  <symbols>
+    <symbol>1</symbol>
+    <symbol>2</symbol>
+    <symbol>3</symbol>
+    <symbol>4</symbol>
+    <symbol>5</symbol>
+    <symbol>6</symbol>
+    <symbol>7</symbol>
+    <symbol>8</symbol>
+    <symbol>9</symbol>
+  </symbols>
+  
+  <!-- region 1: ABC x 123 -->
+  <square region="1" col="A" row="1" position="1" />
+  <square region="1" col="B" row="1" position="2" />
+  <square region="1" col="C" row="1" position="3" />
+  
+  <square region="1" col="A" row="2" position="10" />
+  <square region="1" col="B" row="2" position="11" />
+  <square region="1" col="C" row="2" position="12" />
+  
+  <square region="1" col="A" row="3" position="19" />
+  <square region="1" col="B" row="3" position="20" />
+  <square region="1" col="C" row="3" position="21" />
+  
+  <!-- region 2: DEF x 123 -->
+  <square region="2" col="D" row="1" position="4" />
+  <square region="2" col="E" row="1" position="5" />
+  <square region="2" col="F" row="1" position="6" />
+  
+  <square region="2" col="D" row="2" position="13" />
+  <square region="2" col="E" row="2" position="14" />
+  <square region="2" col="F" row="2" position="15" />
+  
+  <square region="2" col="D" row="3" position="22" />
+  <square region="2" col="E" row="3" position="23" />
+  <square region="2" col="F" row="3" position="24" />
+  
+  <!-- region 3: GHI x 123 -->
+  <square region="3" col="G" row="1" position="7" />
+  <square region="3" col="H" row="1" position="8" />
+  <square region="3" col="I" row="1" position="9" />
+  
+  <square region="3" col="G" row="2" position="16" />
+  <square region="3" col="H" row="2" position="17" />
+  <square region="3" col="I" row="2" position="18" />
+  
+  <square region="3" col="G" row="3" position="25" />
+  <square region="3" col="H" row="3" position="26" />
+  <square region="3" col="I" row="3" position="27" />
+  
+  <!-- region 4: ABC x 456 -->
+  <square region="4" col="A" row="4" position="28" />
+  <square region="4" col="B" row="4" position="29" />
+  <square region="4" col="C" row="4" position="30" />
+  
+  <square region="4" col="A" row="5" position="37" />
+  <square region="4" col="B" row="5" position="38" />
+  <square region="4" col="C" row="5" position="39" />
+  
+  <square region="4" col="A" row="6" position="46" />
+  <square region="4" col="B" row="6" position="47" />
+  <square region="4" col="C" row="6" position="48" />
+  
+  <!-- region 5: DEF x 456 -->
+  <square region="5" col="D" row="4" position="31" />
+  <square region="5" col="E" row="4" position="32" />
+  <square region="5" col="F" row="4" position="33" />
+  
+  <square region="5" col="D" row="5" position="40" />
+  <square region="5" col="E" row="5" position="41" />
+  <square region="5" col="F" row="5" position="42" />
+  
+  <square region="5" col="D" row="6" position="49" />
+  <square region="5" col="E" row="6" position="50" />
+  <square region="5" col="F" row="6" position="51" />
+  
+  <!-- region 6: GHI x 456 -->
+  <square region="6" col="G" row="4" position="34" />
+  <square region="6" col="H" row="4" position="35" />
+  <square region="6" col="I" row="4" position="36" />
+  
+  <square region="6" col="G" row="5" position="43" />
+  <square region="6" col="H" row="5" position="44" />
+  <square region="6" col="I" row="5" position="45" />
+  
+  <square region="6" col="G" row="6" position="52" />
+  <square region="6" col="H" row="6" position="53" />
+  <square region="6" col="I" row="6" position="54" />
+  
+  <!-- region 7: ABC x 789 -->
+  <square region="7" col="A" row="7" position="55" />
+  <square region="7" col="B" row="7" position="56" />
+  <square region="7" col="C" row="7" position="57" />
+  
+  <square region="7" col="A" row="8" position="64" />
+  <square region="7" col="B" row="8" position="65" />
+  <square region="7" col="C" row="8" position="66" />
+  
+  <square region="7" col="A" row="9" position="73" />
+  <square region="7" col="B" row="9" position="74" />
+  <square region="7" col="C" row="9" position="75" />
+  
+  <!-- region 8: DEF x 789 -->
+  <square region="8" col="D" row="7" position="58" />
+  <square region="8" col="E" row="7" position="59" />
+  <square region="8" col="F" row="7" position="60" />
+  
+  <square region="8" col="D" row="8" position="67" />
+  <square region="8" col="E" row="8" position="68" />
+  <square region="8" col="F" row="8" position="69" />
+  
+  <square region="8" col="D" row="9" position="76" />
+  <square region="8" col="E" row="9" position="77" />
+  <square region="8" col="F" row="9" position="78" />
+  
+  <!-- region 9: GHI x 789 -->
+  <square region="9" col="G" row="7" position="61" />
+  <square region="9" col="H" row="7" position="62" />
+  <square region="9" col="I" row="7" position="63" />
+  
+  <square region="9" col="G" row="8" position="70" />
+  <square region="9" col="H" row="8" position="71" />
+  <square region="9" col="I" row="8" position="72" />
+  
+  <square region="9" col="G" row="9" position="79" />
+  <square region="9" col="H" row="9" position="80" />
+  <square region="9" col="I" row="9" position="81" />
+  
+</sudoku>
