@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sudoku.prototype" default="run" basedir=".">
+ 
+  <property name="out.dir" location="out" />
+  <property name="classes.dir" location="${out.dir}/class" />
+  <property name="in.file.dir" location="data"/>
+  <property name="in.file.path" location="${in.file.dir}/game01.xml"/>
+  <property name="xslt.stylesheet.name" value="sudokuSolver.xsl"/>
+  <property name="xslt.stylesheet.path" location="src/xslt/name/brechemier/eric/game/sudoku/${xslt.stylesheet.name}"/>
+  <property name="out.file.dir" location="out/data"/>
+  
+  <path id="compile.classpath">
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  
+  <path id="run.classpath">
+    <path refid="compile.classpath"/>
+    <pathelement location="${classes.dir}"/>
+  </path>
+  
+  <target name="clean" description="Clean up output directories.">
+    <delete dir="${out.dir}" />
+  </target>
+  
+  <target name="run" depends="clean" description="Launch XSLT transformation on sudoko data file">
+    
+    <!--
+    <mkdir dir="${out.file.dir}"/>
+    <java classpathref="run.classpath" classname="net.sf.saxon.Transform">
+      <arg line="-o ${out.file.dir}"/>
+      <arg line="${in.file.dir}"/>
+      <arg line="${xslt.stylesheet.path}"/>
+    </java>
+    -->
+    
+    <mkdir dir="${out.file.dir}"/>
+    <java classpathref="run.classpath" classname="net.sf.saxon.Transform">
+      <arg line="-o ${out.file.dir}/result.xml"/>
+      <arg line="-it startFromNumeric"/>
+      <!-- arg line="${in.file.dir}"/-->
+      <arg line="${xslt.stylesheet.path}"/>
+      <arg line="numeric=900106000060002700002700050200301906000020000401609007020003800003000070000204001"/>
+      <!-- three hard ones -->
+      <!-- Hard arg line="numeric=700000019460190000000682704090000007000300405006700000001000000200074000000200300"/-->
+      <!-- Hard arg line="numeric=007004000002000910060050004030620100600700002001085060200010040018000600000700300"/-->
+      <!-- Hard arg line="numeric=009002000030090000050780009040300200007208500001005060600079080000020050000400700"/-->
+      <!-- arg line="numeric=700340005002005000010000600200100070300000008040002009005000010000600900400078002"/-->
+      <!-- 69: arg line="numeric=000900080610070090002000500000102007050000040800304000009000300070060028040005000"/-->
+      <!-- 70: arg line="numeric=000023490100068000200000000580000000940070063000000025000000001000940007063250000"/-->
+      <!-- Nightmare arg line="numeric=009005800030480000408000000040007000700301006000900010000000607000079080003800400"/-->
+      <!-- Nightmare arg line="numeric=000090600000608000080000350206004810030010020018200905064000070000301000005040000"/-->
+    </java>
+    
+  </target>
+  
+  <target name="runOther" depends="clean" description="Launch Backtrack XSLT solver on sudoko data file">
+    <mkdir dir="${out.file.dir}"/>
+    <java classpathref="run.classpath" classname="net.sf.saxon.Transform">
+      <arg line="-o ${out.file.dir}/result.html"/>
+      <!--arg line="${temp15.file.dir}"/-->
+      <arg line="-it main"/>
+      <arg line="src/xslt/other/andrew.j.welch.sudoku.xsl"/>
+    </java>
+  </target>
+  
+</project>
