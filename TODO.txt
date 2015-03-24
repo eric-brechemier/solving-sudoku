@@ -21,3 +21,14 @@ The visualization of Sudoku #69 from Puzzler (2006) in rating-sudoku
 shows a high number of cells unidentified with any of the three current
 strategies. This may be due to a glitch in current implementation,
 or the sign that a new strategy needs to be added.
+
+=> the missing strategy is a generalization of the pattern matching
+strategy, with "wildcards". I will merge it extend the pattern
+matching strategy to take this new aspect into account.
+
+For example: 459 459 459 in three cells is detected as a pattern,
+but 459 459 49 is not detected. However, introducing a wildcard,
+a pattern can be detected: 459 459 4*9. This represents the fact
+that the number 5 is not allowed here, but can be added temporarily
+to allowed hypotheses to complete the pattern, ignoring some knowledge
+to allow the identification of the pattern.
