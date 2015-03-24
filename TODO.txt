@@ -1,0 +1,16 @@
+I noticed, using the visualizations of rating-sudoku project
+(https://github.com/eric-brechemier/rating-sudoku) that advanced
+strategies were used on sudoku puzzles that could be solved without
+them: the current implementation will use a harder strategy to
+identify a cell as soon as possible, which could be found with
+an easier strategy, at the cost of extra steps.
+
+In order to give an accurate representation of the difficulty
+of sudoku puzzles, the implementation should delay the use of
+harder strategies to a later step, when no progress can be made
+with any easier strategy.
+
+This behavior could be customized using an option parameter:
+* shortest solution (using more complex strategies if needed)
+* easiest path (using more steps if needed)
+if the current behavior is to be preserved at all.
