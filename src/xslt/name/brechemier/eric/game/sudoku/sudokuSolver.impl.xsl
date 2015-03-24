@@ -8,12 +8,17 @@
  xmlns:xs="http://www.w3.org/2001/XMLSchema"
  exclude-result-prefixes="saxon sudoku xs"
 >
-  <!-- *.impl.xsl: all code but imports. See corresponding *.xsl for full description -->
-  <xsl:param name="numeric" select="'009005800030480000408000000040007000700301006000900010000000607000079080003800400'" />
+  <!-- *.impl.xsl: all code but imports.
+  See corresponding *.xsl for full description -->
+  <xsl:param name="numeric"
+    select="'009005800030480000408000000040007000700301006000900010000000607000079080003800400'"
+  />
 
   <xsl:template match="/">
     <xsl:apply-templates mode="loop" select="sudoku:sudoku">
-      <xsl:with-param name="transform" select="saxon:compile-stylesheet( document('sudokuSolverStep.xsl')  )" />
+      <xsl:with-param name="transform"
+        select="saxon:compile-stylesheet( document('sudokuSolverStep.xsl')  )"
+      />
     </xsl:apply-templates>
   </xsl:template>
 
@@ -24,7 +29,9 @@
       <xsl:with-param name="transform" select="$transform" />
     </xsl:apply-templates>
   </xsl:template>
-  <xsl:template mode="loop" match="sudoku:sudoku[@status='solved' or @status='stalled']" priority="2">
+  <xsl:template mode="loop" priority="2"
+    match="sudoku:sudoku[@status='solved' or @status='stalled']"
+  >
     <!-- TODO: report error when symbol out of list is detected -->
     <xsl:copy-of select="." />
   </xsl:template>
