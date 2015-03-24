@@ -1,3 +1,4 @@
+1.
 I noticed, using the visualizations of rating-sudoku project
 (https://github.com/eric-brechemier/rating-sudoku) that advanced
 strategies were used on sudoku puzzles that could be solved without
@@ -14,3 +15,9 @@ This behavior could be customized using an option parameter:
 * shortest solution (using more complex strategies if needed)
 * easiest path (using more steps if needed)
 if the current behavior is to be preserved at all.
+
+2.
+The visualization of Sudoku #69 from Puzzler (2006) in rating-sudoku
+shows a high number of cells unidentified with any of the three current
+strategies. This may be due to a glitch in current implementation,
+or the sign that a new strategy needs to be added.
