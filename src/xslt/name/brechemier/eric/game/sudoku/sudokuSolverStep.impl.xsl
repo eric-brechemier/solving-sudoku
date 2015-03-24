@@ -1,29 +1,29 @@
 <xsl:transform
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  version="2.0"
- 
+
  xmlns="http://eric.brechemier.name/game/sudoku"
  xmlns:sudoku="http://eric.brechemier.name/game/sudoku"
  xmlns:xs="http://www.w3.org/2001/XMLSchema"
  exclude-result-prefixes="sudoku xs"
 >
   <!-- *.impl.xsl: all code but imports. See corresponding *.xsl for full description -->
-  
+
   <xsl:key name="row-square-with-allowed-values" match="sudoku:square" use="concat(@row,'/',sudoku:allowed)" />
   <xsl:key name="col-square-with-allowed-values" match="sudoku:square" use="concat(@col,'/',sudoku:allowed)" />
   <xsl:key name="region-square-with-allowed-values" match="sudoku:square" use="concat(@region,'/',sudoku:allowed)" />
-  
+
   <xsl:key name="row-square" match="sudoku:square" use="@row" />
   <xsl:key name="col-square" match="sudoku:square" use="@col" />
   <xsl:key name="region-square" match="sudoku:square" use="@region" />
-  
+
   <xsl:key name="row-value" match="sudoku:square/@value" use="../@row" />
   <xsl:key name="col-value" match="sudoku:square/@value" use="../@col" />
   <xsl:key name="region-value" match="sudoku:square/@value" use="../@region" />
-  
+
   <xsl:variable name="allSymbols" select="/sudoku:sudoku/sudoku:symbols/sudoku:symbol" />
   <xsl:variable name="allSymbolsCount" select="count($allSymbols)" />
-  
+
   <xsl:function name="sudoku:value-or-allowed-value-on-different-square-in-row" as="node()*">
     <xsl:param name="contextNode" as="node()" />
     <xsl:param name="row" as="xs:string" />
@@ -34,7 +34,7 @@
       </xsl:for-each>
     </xsl:for-each>
   </xsl:function>
-  
+
   <xsl:function name="sudoku:value-or-allowed-value-on-different-square-in-col" as="node()*">
     <xsl:param name="contextNode" as="node()" />
     <xsl:param name="row" as="xs:string" />
@@ -45,7 +45,7 @@
       </xsl:for-each>
     </xsl:for-each>
   </xsl:function>
-  
+
   <xsl:function name="sudoku:value-or-allowed-value-on-different-square-in-region" as="node()*">
     <xsl:param name="contextNode" as="node()" />
     <xsl:param name="row" as="xs:string" />
@@ -57,9 +57,9 @@
       </xsl:for-each>
     </xsl:for-each>
   </xsl:function>
-  
-  
-  
+
+
+
   <xsl:template mode="print" match="node()" />
   <xsl:template mode="print" match="sudoku:sudoku">
     <current>
@@ -89,14 +89,14 @@
       </xsl:for-each>
     </current>
   </xsl:template>
-  
+
   <xsl:template match="sudoku:sudoku[not(@step=1) and @missing=count(sudoku:square[not(@value)]) ]" priority="3">
     <sudoku step="{@step}" missing="{count(sudoku:square[not(@value)])}" status="stalled">
       <xsl:apply-templates mode="print" select="." />
       <xsl:copy-of select="child::node()" />
     </sudoku>
   </xsl:template>
-  
+
   <xsl:template match="sudoku:sudoku" priority="1">
     <sudoku step="{@step}" missing="0" status="solved">
       <xsl:apply-templates mode="print" select="." />
@@ -121,11 +121,11 @@
       </xsl:apply-templates>
     </sudoku>
   </xsl:template>
-  
+
   <xsl:template match="sudoku:symbols">
     <xsl:copy-of select="."/>
   </xsl:template>
-  
+
   <xsl:template match="sudoku:square[@value]" priority="2">
     <square>
       <xsl:copy-of select="@region|@col|@row|@value|@method|@step"/>
@@ -140,7 +140,7 @@
       </xsl:apply-templates>
     </square>
   </xsl:template>
-  
+
   <xsl:template mode="scanning" match="node()"/>
   <xsl:template mode="scanning" match="sudoku:square[   $allSymbolsCount   -   count(  distinct-values( key('row-value',@row)|key('col-value',@col)|key('region-value',@region) )  )   =1   ]" priority="2">
     <xsl:param name="step" />
@@ -159,7 +159,7 @@
       <xsl:with-param name="step" select="$step"/>
     </xsl:apply-templates>
   </xsl:template>
-  
+
   <xsl:template mode="marking-up" match="node()"/>
   <!-- USELESS: found before by "1-scanning" mode
   <xsl:template mode="marking-up" match="sudoku:square[count(sudoku:allowed/sudoku:symbol)=1 ]" priority="3">
@@ -171,22 +171,22 @@
     <xsl:attribute name="step"><xsl:value-of select="$step"/></xsl:attribute>
   </xsl:template>
   -->
-  <xsl:template mode="marking-up" 
+  <xsl:template mode="marking-up"
     match="
-      sudoku:square[  
+      sudoku:square[
         sudoku:allowed/sudoku:symbol[
-             not(.= sudoku:value-or-allowed-value-on-different-square-in-row(.,../../@row,../../@col) ) 
+             not(.= sudoku:value-or-allowed-value-on-different-square-in-row(.,../../@row,../../@col) )
           or not(.= sudoku:value-or-allowed-value-on-different-square-in-col(.,../../@row,../../@col) )
-          or not(.= sudoku:value-or-allowed-value-on-different-square-in-region(.,../../@row,../../@col,../../@region) ) 
-        ]  
+          or not(.= sudoku:value-or-allowed-value-on-different-square-in-region(.,../../@row,../../@col,../../@region) )
+        ]
       ]" priority="2"
   >
     <xsl:param name="step" />
     <xsl:attribute name="value">
       <xsl:value-of select="sudoku:allowed/sudoku:symbol[
-             not(.= sudoku:value-or-allowed-value-on-different-square-in-row(.,../../@row,../../@col) ) 
+             not(.= sudoku:value-or-allowed-value-on-different-square-in-row(.,../../@row,../../@col) )
           or not(.= sudoku:value-or-allowed-value-on-different-square-in-col(.,../../@row,../../@col) )
-          or not(.= sudoku:value-or-allowed-value-on-different-square-in-region(.,../../@row,../../@col,../../@region) )  
+          or not(.= sudoku:value-or-allowed-value-on-different-square-in-region(.,../../@row,../../@col,../../@region) )
         ]"/>
     </xsl:attribute>
     <xsl:attribute name="method">2-marking-up</xsl:attribute>
@@ -207,7 +207,7 @@
   <xsl:template mode="marking-up" match="sudoku:symbol" priority="1">
     <xsl:copy-of select="."/>
   </xsl:template>
-  
+
   <xsl:template mode="pattern-matching" match="node()"/>
   <xsl:template mode="pattern-matching" match="sudoku:square[count( sudoku:allowed/sudoku:symbol[not(.=../../sudoku:forbidden/sudoku:symbol)] )=1]" priority="2">
     <xsl:param name="step" />
@@ -235,9 +235,9 @@
     <xsl:param name="thisCol" />
     <xsl:param name="thisRegion" />
     <xsl:param name="thisMarks" />
-    
+
     <xsl:variable name="thisSymbol" select="."/>
-    
+
     <xsl:if test="
         key('row-square',$thisRow)[not(sudoku:allowed=$thisMarks) and contains(sudoku:allowed,$thisSymbol) and count(sudoku:allowed/sudoku:symbol)=count(  key('row-square-with-allowed-values',concat($thisRow,'/',sudoku:allowed) )  ) ]
       | key('col-square',$thisCol)[not(sudoku:allowed=$thisMarks) and contains(sudoku:allowed,$thisSymbol) and count(sudoku:allowed/sudoku:symbol)=count(  key('col-square-with-allowed-values',concat($thisCol,'/',sudoku:allowed) )  ) ]
@@ -247,10 +247,10 @@
       <xsl:copy-of select="."/>
     </xsl:if>
   </xsl:template>
-  
+
   <xsl:template match="comment()">
     <xsl:copy />
   </xsl:template>
   <!--xsl:template match="text()[normalize-space(.)='']"/-->
-  
+
 </xsl:transform>
