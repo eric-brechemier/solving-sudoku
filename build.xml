@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="sudoku.prototype" default="run" basedir=".">
+<project name="sudoku.solver" default="run" basedir=".">
 
   <property name="out.dir" location="out" />
   <property name="classes.dir" location="${out.dir}/class" />
