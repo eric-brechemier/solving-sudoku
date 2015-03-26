@@ -134,6 +134,24 @@
     </current>
   </xsl:template>
 
+  <!-- FIXME: in #69 in Puzzler (2006),
+  no new value is identified from step 5 to step 6,
+  but new clues are marked which allow to solve the puzzle
+  completely if the resolution is not stopped at step 5 by the rule below.
+
+  The stop is premature in current implementation. One way to fix this issue
+  would be to track changes in clues (allowed/forbidden) as well before
+  stalling the resolution. Another possibility, which I plan to implement
+  after a refactoring, is to create annotations for allowed/forbidden symbols
+  in each cell as a preliminary step before running the resolution. This
+  will allow each strategy to work with the most complete hypotheses possible
+  with the information discovered up to the previous step.
+
+  Currently, the benefits of the computation are lagging one step behind,
+  which has no impact in most puzzles, but prevents the resolution of puzzles
+  where no progress is made at all at some point without taking into account
+  the updated hypotheses.
+  -->
   <xsl:template priority="3"
     match="
       sudoku:sudoku[
